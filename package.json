@@ -1,0 +1,46 @@
+{
+  "name": "@ethers-ext/provider-test",
+  "version": "6.0.0-beta.1",
+  "description": "A extension for Ethers for a TestProvider, backed by Ganache.",
+  "dependencies": {
+    "@chainsafe/ssz": "^0.11.1",
+    "ethers": "^6.5.0",
+    "ganache": "^7.8.0"
+  },
+  "devDependencies": {
+    "@types/readable-stream": "^2.3.15",
+    "typescript": "^5.0.0"
+  },
+  "exports": {
+    ".": {
+      "import": "./lib.esm/index.js",
+      "default": "./lib.commonjs/index.js"
+    }
+  },
+  "scripts": {
+    "auto-build": "npm run build -- -w",
+    "build": "tsc --build ./tsconfig.esm.json",
+    "build-all": "npm run build && npm run build-commonjs",
+    "build-clean": "npm run clean && npm run build-all",
+    "build-commonjs": "tsc --build ./tsconfig.commonjs.json",
+    "clean": "rm -rf lib.commonjs lib.esm && cp -r misc/basedirs/* .",
+    "test": "exit 1"
+  },
+  "main": "./lib.commonjs/index.js",
+  "module": "./lib.esm/index.js",
+  "publishConfig": {
+    "tag": "beta"
+  },
+  "sideEffects": false,
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ethers-io/ext-provider-test.git"
+  },
+  "bugs": {
+    "url": "http://github.com/ethers-io/ext-provider-ext/issues",
+    "email": "github@ricmoo.com"
+  },
+  "author": "Richard Moore <me@ricmoo.com>",
+  "license": "MIT"
+}
