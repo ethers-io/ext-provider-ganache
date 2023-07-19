@@ -1,7 +1,7 @@
-import { TestProvider } from "./index.js";
+import { GanacheProvider } from "./index.js";
 
 (async function() {
-    const provider = new TestProvider();
+    const provider = new GanacheProvider();
     console.log(provider);
     console.log(await provider.getBlockNumber());
 

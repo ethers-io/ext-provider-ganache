@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TestProvider = void 0;
-var provider_test_js_1 = require("./provider-test.js");
-Object.defineProperty(exports, "TestProvider", { enumerable: true, get: function () { return provider_test_js_1.TestProvider; } });
+exports.GanacheProvider = void 0;
+var provider_ganache_js_1 = require("./provider-ganache.js");
+Object.defineProperty(exports, "GanacheProvider", { enumerable: true, get: function () { return provider_ganache_js_1.GanacheProvider; } });
 //# sourceMappingURL=index.js.map

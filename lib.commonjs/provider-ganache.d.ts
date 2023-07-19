@@ -5,7 +5,7 @@ export interface AccountState {
     code?: BytesLike;
     nonce?: Numeric;
 }
-export declare class TestProvider extends JsonRpcApiProvider {
+export declare class GanacheProvider extends JsonRpcApiProvider {
     #private;
     constructor();
     _perform(req: PerformActionRequest): Promise<any>;
@@ -15,4 +15,4 @@ export declare class TestProvider extends JsonRpcApiProvider {
     setStorageAt(_address: string, _slot: BigNumberish, value: string): Promise<void>;
     mine(): Promise<void>;
 }
-//# sourceMappingURL=provider-test.d.ts.map
+//# sourceMappingURL=provider-ganache.d.ts.map

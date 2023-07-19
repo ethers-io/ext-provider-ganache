@@ -1,5 +1,5 @@
 {
-  "name": "@ethers-ext/provider-test",
+  "name": "@ethers-ext/provider-ganache",
   "version": "6.0.0-beta.1",
   "description": "A extension for Ethers for a TestProvider, backed by Ganache.",
   "dependencies": {
@@ -41,10 +41,10 @@
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": "git://github.com/ethers-io/ext-provider-test.git"
+    "url": "git://github.com/ethers-io/ext-provider-ganache.git"
   },
   "bugs": {
-    "url": "http://github.com/ethers-io/ext-provider-ext/issues",
+    "url": "http://github.com/ethers-io/ext-provider-ganache/issues",
     "email": "github@ricmoo.com"
   },
   "author": "Richard Moore <me@ricmoo.com>",

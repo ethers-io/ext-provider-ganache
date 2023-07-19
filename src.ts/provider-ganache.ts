@@ -22,7 +22,7 @@ export interface AccountState {
     nonce?: Numeric;
 }
 
-export class TestProvider extends JsonRpcApiProvider {
+export class GanacheProvider extends JsonRpcApiProvider {
     #provider: any;
 
     constructor() {

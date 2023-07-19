@@ -1,2 +1,2 @@
 
-export { TestProvider } from "./provider-test.js";
+export { GanacheProvider } from "./provider-ganache.js";

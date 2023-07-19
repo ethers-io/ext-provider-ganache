@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const index_js_1 = require("./index.js");
 (function () {
     return __awaiter(this, void 0, void 0, function* () {
-        const provider = new index_js_1.TestProvider();
+        const provider = new index_js_1.GanacheProvider();
         console.log(provider);
         console.log(yield provider.getBlockNumber());
         const signer = yield provider.getSigner();

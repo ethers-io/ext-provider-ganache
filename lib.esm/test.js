@@ -7,10 +7,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { TestProvider } from "./index.js";
+import { GanacheProvider } from "./index.js";
 (function () {
     return __awaiter(this, void 0, void 0, function* () {
-        const provider = new TestProvider();
+        const provider = new GanacheProvider();
         console.log(provider);
         console.log(yield provider.getBlockNumber());
         const signer = yield provider.getSigner();

@@ -18,11 +18,11 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var _TestProvider_provider;
+var _GanacheProvider_provider;
 import { assertArgument, getAddress, getBigInt, getNumber, hexlify, isHexString, JsonRpcApiProvider, Network } from "ethers";
 import ganache from "ganache";
 let _nonce = BigInt(1);
-export class TestProvider extends JsonRpcApiProvider {
+export class GanacheProvider extends JsonRpcApiProvider {
     constructor() {
         const network = new Network("testnet", 13370);
         super(network, {
@@ -31,8 +31,8 @@ export class TestProvider extends JsonRpcApiProvider {
             batchStallTime: 0,
             cacheTimeout: -1
         });
-        _TestProvider_provider.set(this, void 0);
-        __classPrivateFieldSet(this, _TestProvider_provider, ganache.provider(), "f");
+        _GanacheProvider_provider.set(this, void 0);
+        __classPrivateFieldSet(this, _GanacheProvider_provider, ganache.provider(), "f");
     }
     _perform(req) {
         const _super = Object.create(null, {
@@ -49,7 +49,7 @@ export class TestProvider extends JsonRpcApiProvider {
             assertArgument(!Array.isArray(payload), "batch requests unsupported", "UNSUPPORTED_OPERATION", {
                 operation: "_send", info: { payload }
             });
-            const result = yield __classPrivateFieldGet(this, _TestProvider_provider, "f").request(payload);
+            const result = yield __classPrivateFieldGet(this, _GanacheProvider_provider, "f").request(payload);
             return [{ id: payload.id, result }];
         });
     }
@@ -97,5 +97,5 @@ export class TestProvider extends JsonRpcApiProvider {
         });
     }
 }
-_TestProvider_provider = new WeakMap();
-//# sourceMappingURL=provider-test.js.map
+_GanacheProvider_provider = new WeakMap();
+//# sourceMappingURL=provider-ganache.js.map
