@@ -1,8 +1,9 @@
-Ethers: TestProvider
+Ethers: GanacheProvider
 ====================
 
-The **TestProvider** uses an in-memory Ethereum instance which
-can be used for testing allowing free transactions and performing
+The **GanacheProvider** uses an in-memory Ethereum instance (via
+[Ganache](https://github.com/trufflesuite/ganache)) which can be
+used for testing allowing free transactions and performing
 explicit operations against an account not normally possible on a
 real network.
 
@@ -10,10 +11,10 @@ Usage
 -----
 
 ```javascript
-import { TestProvider } from "@ethers-ext/test-provider";
+import { GanacheProvider } from "@ethers-ext/provider-ganache";
 
-// Create a new in-memory TestProvider
-provider = new TestProvider();
+// Create a new in-memory GanacheProvider
+provider = new GanacheProvider();
 
 
 ///////////////////
