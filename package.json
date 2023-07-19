@@ -17,6 +17,12 @@
       "default": "./lib.commonjs/index.js"
     }
   },
+  "funding": [
+    {
+      "type": "individual",
+      "url": "https://github.com/sponsors/ethers-io"
+    }
+  ],
   "scripts": {
     "auto-build": "npm run build -- -w",
     "build": "tsc --build ./tsconfig.esm.json",
@@ -29,7 +35,7 @@
   "main": "./lib.commonjs/index.js",
   "module": "./lib.esm/index.js",
   "publishConfig": {
-    "tag": "beta"
+    "access": "public"
   },
   "sideEffects": false,
   "keywords": [],
