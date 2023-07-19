@@ -7,6 +7,13 @@ used for testing allowing free transactions and performing
 explicit operations against an account not normally possible on a
 real network.
 
+Installing
+----------
+
+```shell
+/home/ricmoo> npm install @ethers-ext/provider-ganache
+```
+
 Usage
 -----
 
