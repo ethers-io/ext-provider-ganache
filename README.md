@@ -1,5 +1,5 @@
 Ethers: GanacheProvider
-====================
+=======================
 
 The **GanacheProvider** uses an in-memory Ethereum instance (via
 [Ganache](https://github.com/trufflesuite/ganache)) which can be
