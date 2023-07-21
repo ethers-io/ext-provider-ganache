@@ -21,7 +21,7 @@ Usage
 import { GanacheProvider } from "@ethers-ext/provider-ganache";
 
 // Create a new in-memory GanacheProvider
-provider = new GanacheProvider();
+const provider = new GanacheProvider();
 
 
 ///////////////////
