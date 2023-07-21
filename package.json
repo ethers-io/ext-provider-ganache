@@ -17,6 +17,7 @@
       "default": "./lib.commonjs/index.js"
     }
   },
+  "ethereum": "donations.ethers.eth",
   "funding": [
     {
       "type": "individual",
@@ -30,7 +31,7 @@
     "build-clean": "npm run clean && npm run build-all",
     "build-commonjs": "tsc --build ./tsconfig.commonjs.json",
     "clean": "rm -rf lib.commonjs lib.esm && cp -r misc/basedirs/* .",
-    "test": "exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "main": "./lib.commonjs/index.js",
   "module": "./lib.esm/index.js",
