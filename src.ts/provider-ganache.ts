@@ -8,13 +8,14 @@ import {
 
 import ganache from "ganache";
 
+
 import type {
     BigNumberish, BytesLike, Numeric,
-    JsonRpcError, JsonRpcPayload, JsonRpcResult,
-    PerformActionRequest
+    JsonRpcError, JsonRpcPayload, JsonRpcResult
 } from "ethers";
 
-let _nonce = BigInt(1);
+import type { EthereumProvider } from "ganache";
+
 
 export interface AccountState {
     balance?: BigNumberish;
@@ -22,11 +23,22 @@ export interface AccountState {
     nonce?: Numeric;
 }
 
-export class GanacheProvider extends JsonRpcApiProvider {
-    #provider: any;
 
-    constructor() {
-        const network = new Network("testnet", 13370);
+export type GanacheConfig = Parameters<typeof ganache.provider>[0];
+
+
+export class GanacheProvider extends JsonRpcApiProvider {
+    readonly ganache: EthereumProvider;
+
+    constructor(providerOrOptions?: EthereumProvider | GanacheConfig) {
+        let provider: EthereumProvider;
+        if (providerOrOptions == null || typeof((<any>providerOrOptions).getOptions) !== "function") {
+            provider = ganache.provider(<any>providerOrOptions);
+        } else {
+            provider = <EthereumProvider>providerOrOptions;
+        }
+
+        const network = new Network("testnet", provider.getOptions().chain.chainId);
         super(network, {
             staticNetwork: network,
             batchMaxCount: 1,
@@ -34,13 +46,7 @@ export class GanacheProvider extends JsonRpcApiProvider {
             cacheTimeout: -1
         });
 
-        this.#provider = ganache.provider();
-    }
-
-    async _perform(req: PerformActionRequest): Promise<any> {
-        (<any>req).performnonce = _nonce++;
-        console.log("PP", req);
-        return super._perform(req);
+        this.ganache = provider;
     }
 
     async _send(payload: JsonRpcPayload | Array<JsonRpcPayload>): Promise<Array<JsonRpcResult | JsonRpcError>> {
@@ -48,7 +54,7 @@ export class GanacheProvider extends JsonRpcApiProvider {
             operation: "_send", info: { payload }
         });
 
-        const result = await this.#provider.request(payload)
+        const result = await this.ganache.request(<any>payload)
         return [ { id: payload.id, result } ];
     }
 

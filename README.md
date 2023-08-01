@@ -49,6 +49,12 @@ await provider.setStorageAt(addr, 123, data);
 API
 ---
 
+### `new GanacheProvider(optionsOrGanache?)`
+
+When constructing a GanacheProvider, either the standard options
+normally passed to Ganache may be used or an existing Ganache
+instance created with the desired configuration.
+
 ### `provider.snapshot() => Promise<() => void>`
 
 Takes a snapshot of the current state and resolves to a function, that
