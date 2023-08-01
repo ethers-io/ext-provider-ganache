@@ -8,54 +8,37 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
-    if (kind === "m") throw new TypeError("Private method is not writable");
-    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
-    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
-    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
-};
-var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
-    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
-    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
-    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var _GanacheProvider_provider;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GanacheProvider = void 0;
 const ethers_1 = require("ethers");
 const ganache_1 = __importDefault(require("ganache"));
-let _nonce = BigInt(1);
 class GanacheProvider extends ethers_1.JsonRpcApiProvider {
-    constructor() {
-        const network = new ethers_1.Network("testnet", 13370);
+    constructor(providerOrOptions) {
+        let provider;
+        if (providerOrOptions == null || typeof (providerOrOptions.getOptions) !== "function") {
+            provider = ganache_1.default.provider(providerOrOptions);
+        }
+        else {
+            provider = providerOrOptions;
+        }
+        const network = new ethers_1.Network("testnet", provider.getOptions().chain.chainId);
         super(network, {
             staticNetwork: network,
             batchMaxCount: 1,
             batchStallTime: 0,
             cacheTimeout: -1
         });
-        _GanacheProvider_provider.set(this, void 0);
-        __classPrivateFieldSet(this, _GanacheProvider_provider, ganache_1.default.provider(), "f");
-    }
-    _perform(req) {
-        const _super = Object.create(null, {
-            _perform: { get: () => super._perform }
-        });
-        return __awaiter(this, void 0, void 0, function* () {
-            req.performnonce = _nonce++;
-            console.log("PP", req);
-            return _super._perform.call(this, req);
-        });
+        this.ganache = provider;
     }
     _send(payload) {
         return __awaiter(this, void 0, void 0, function* () {
             (0, ethers_1.assertArgument)(!Array.isArray(payload), "batch requests unsupported", "UNSUPPORTED_OPERATION", {
                 operation: "_send", info: { payload }
             });
-            const result = yield __classPrivateFieldGet(this, _GanacheProvider_provider, "f").request(payload);
+            const result = yield this.ganache.request(payload);
             return [{ id: payload.id, result }];
         });
     }
@@ -104,5 +87,4 @@ class GanacheProvider extends ethers_1.JsonRpcApiProvider {
     }
 }
 exports.GanacheProvider = GanacheProvider;
-_GanacheProvider_provider = new WeakMap();
 //# sourceMappingURL=provider-ganache.js.map

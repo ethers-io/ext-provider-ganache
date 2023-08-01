@@ -1,14 +1,16 @@
 import { JsonRpcApiProvider } from "ethers";
-import type { BigNumberish, BytesLike, Numeric, JsonRpcError, JsonRpcPayload, JsonRpcResult, PerformActionRequest } from "ethers";
+import ganache from "ganache";
+import type { BigNumberish, BytesLike, Numeric, JsonRpcError, JsonRpcPayload, JsonRpcResult } from "ethers";
+import type { EthereumProvider } from "ganache";
 export interface AccountState {
     balance?: BigNumberish;
     code?: BytesLike;
     nonce?: Numeric;
 }
+export type GanacheConfig = Parameters<typeof ganache.provider>[0];
 export declare class GanacheProvider extends JsonRpcApiProvider {
-    #private;
-    constructor();
-    _perform(req: PerformActionRequest): Promise<any>;
+    readonly ganache: EthereumProvider;
+    constructor(providerOrOptions?: EthereumProvider | GanacheConfig);
     _send(payload: JsonRpcPayload | Array<JsonRpcPayload>): Promise<Array<JsonRpcResult | JsonRpcError>>;
     snapshot(): Promise<() => Promise<void>>;
     setAccount(_address: string, state: AccountState): Promise<void>;
